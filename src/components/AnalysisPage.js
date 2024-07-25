@@ -10,6 +10,7 @@ const AnalysisPage = () => {
   const [error, setError] = useState(false);
   const [codeError, setCodeError] = useState(false);
   const [pragmaError, setPragmaError] = useState(false);
+  const [apiError, setApiError] = useState(''); // State for API error messages
 
   const baseURL = process.env.REACT_APP_API_BASE_URL;
 
@@ -37,24 +38,23 @@ const AnalysisPage = () => {
       return;
     }
 
-    let lines = code.split("\n")
+    let lines = code.split("\n");
     let pragmaFound = false;
 
     lines.forEach((line) => {
-      if (line.startsWith("pragma")){
+      if (line.startsWith("pragma")) {
         pragmaFound = true;
       }
     });
 
-    if (!pragmaFound){
-      setPragmaError(true)
-      return
+    if (!pragmaFound) {
+      setPragmaError(true);
+      return;
     }
-
 
     setLoading(true);
     const endpoint = getApiEndpoint();
-    const wrappedCode = `''${code}''`;
+    const wrappedCode = `"${code}"`;
     const config = {
       method: 'post',
       url: endpoint,
@@ -66,7 +66,8 @@ const AnalysisPage = () => {
       const result = await axios(config);
       setResponse(result.data);
     } catch (error) {
-      console.error(error);
+      const errorMsg = error.response ? error.response.data.errorMsg : 'An unexpected error occurred.';
+      setApiError(errorMsg);
     } finally {
       setLoading(false);
     }
@@ -118,7 +119,7 @@ const AnalysisPage = () => {
         <div className="error-modal">
           <div className="error-content">
             <p>Please select the tool you want to use before proceeding to analyze</p>
-            <button onClick={() => setError(false)} className="close-button">Okay</button>
+            <button onClick={() => setError(false)} className="close-button">Close</button>
           </div>
         </div>
       )}
@@ -126,7 +127,7 @@ const AnalysisPage = () => {
         <div className="error-modal">
           <div className="error-content">
             <p>Please add your Solidity code to be analyzed!</p>
-            <button onClick={() => setCodeError(false)} className="close-button">Okay</button>
+            <button onClick={() => setCodeError(false)} className="close-button">Close</button>
           </div>
         </div>
       )}
@@ -135,7 +136,15 @@ const AnalysisPage = () => {
           <div className="error-content">
             <p>The code block you've added is invalid!</p>
             <p>Please add valid Solidity code and try again.</p>
-            <button onClick={() => setPragmaError(false)} className="close-button">Okay</button>
+            <button onClick={() => setPragmaError(false)} className="close-button">Close</button>
+          </div>
+        </div>
+      )}
+      {apiError && (
+        <div className="error-modal">
+          <div className="error-content">
+            <p>{apiError}</p>
+            <button onClick={() => setApiError('')} className="close-button">Close</button>
           </div>
         </div>
       )}
