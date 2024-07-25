@@ -10,7 +10,7 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const emailData = {
-      to: ['recipient1@example.com', 'recipient2@example.com'],  // Replace with actual email addresses
+      to: ['aniket.angwalkar2@mail.dcu.ie', 'recipient2@example.com'],
       from: email,
       subject,
       text: message,
@@ -28,13 +28,13 @@ const ContactUs = () => {
     <div className="contact-container">
       <h2>Contact Us</h2>
       <form onSubmit={handleSubmit}>
-        <input
+        {/* <input
           type="email"
           placeholder="Your Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-        />
+        /> */}
         <input
           type="text"
           placeholder="Subject"

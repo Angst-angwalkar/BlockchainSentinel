@@ -30,7 +30,7 @@ const AnalysisPage = () => {
 
     setLoading(true);
     const endpoint = getApiEndpoint();
-    const wrappedCode = `"\n${code}\n"`; // Wrap the code in double apostrophes
+    const wrappedCode = `"\n${code}\n"`;
     const config = {
       method: 'post',
       url: endpoint,

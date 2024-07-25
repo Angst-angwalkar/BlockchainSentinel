@@ -1,5 +1,5 @@
 body {
-  background-image: url('/public/background.png'); /* Path relative to the public directory */
+  background-image: url('/public/background.png'); 
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -71,7 +71,7 @@ body {
 
 .response-output {
   height: 800px;
-  max-height: 1500px; /* Approx. 100 lines depending on font size */
+  max-height: 1500px;
   overflow-y: auto;
 }
 
@@ -153,7 +153,7 @@ body {
 
   .home-container-wrapper {
     padding: 10px;
-    height: auto; /* Adjust height for smaller screens */
+    height: auto;
   }
 
   .home-container {

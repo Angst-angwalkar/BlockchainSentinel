@@ -1,5 +1,5 @@
 body {
-    background-image: url('/public/sentinel_background.jpg'); /* Path relative to the public directory */
+    background-image: url('/public/sentinel_background.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -16,9 +16,9 @@ body {
     align-items: center;
     background-color: rgba(89, 88, 102, 0.6);
     padding: 15px 20px;
-    position: fixed;
+    position: relative;
     width: calc(100% - 80px);
-    top: 20px;
+    top: 10px;
     left: 20px;
     border-radius: 10px;
     z-index: 1000;
@@ -131,7 +131,7 @@ body {
       align-items: flex-start;
       padding: 10px 20px;
       width: calc(100% - 40px);
-      left: 20px;
+      left: 50px;
     }
   
     .nav-links {
@@ -141,7 +141,7 @@ body {
   
     .home-container-wrapper {
       padding: 10px;
-      height: auto; /* Adjust height for smaller screens */
+      height: auto; 
     }
   
     .home-container {

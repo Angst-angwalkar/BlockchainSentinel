@@ -2,14 +2,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
+    height: 100vh;
     padding: 20px;
     box-sizing: border-box;
   }
   
   .home-container {
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.5); 
     border-radius: 10px;
     padding: 50px 20px;
     max-width: 800px;
@@ -17,17 +17,17 @@
   }
   
   .home-container h1{
-    color: #3fff48; /* White text color for better contrast */
+    color: #3fff48;
     margin: 20px 0;
   }
 
   .home-container h2{
-    color: #c1ff4d; /* White text color for better contrast */
+    color: #c1ff4d;
     margin: 20px 0;
   }
 
   .home-container p {
-    color: #b2ffc3; /* White text color for better contrast */
+    color: #b2ffc3;
     margin: 20px 0;
   }
   
