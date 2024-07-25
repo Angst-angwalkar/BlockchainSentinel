@@ -9,6 +9,7 @@ const AnalysisPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [codeError, setCodeError] = useState(false);
+  const [pragmaError, setPragmaError] = useState(false);
 
   const baseURL = process.env.REACT_APP_API_BASE_URL;
 
@@ -46,7 +47,7 @@ const AnalysisPage = () => {
     });
 
     if (!pragmaFound){
-      setCodeError(true);
+      setPragmaError(true)
       return
     }
 
@@ -126,6 +127,15 @@ const AnalysisPage = () => {
           <div className="error-content">
             <p>Please add your Solidity code to be analyzed!</p>
             <button onClick={() => setCodeError(false)} className="close-button">Okay</button>
+          </div>
+        </div>
+      )}
+      {pragmaError && (
+        <div className="error-modal">
+          <div className="error-content">
+            <p>The code block you've added is invalid!</p>
+            <p>Please add valid Solidity code and try again.</p>
+            <button onClick={() => setPragmaError(false)} className="close-button">Okay</button>
           </div>
         </div>
       )}
