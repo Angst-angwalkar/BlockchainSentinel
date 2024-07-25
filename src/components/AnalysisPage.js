@@ -8,15 +8,18 @@ const AnalysisPage = () => {
   const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [codeError, setCodeError] = useState(false);
+
+  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   const getApiEndpoint = () => {
     switch (selectedTool) {
       case 'Mythril':
-        return 'https://analyzer-service-latest.onrender.com/openai/inspect/myth/analyze';
+        return "https://analyzer-service-latest.onrender.com/openai/inspect/myth/analyze";
       case 'Slither':
-        return 'https://analyzer-service-latest.onrender.com/openai/inspect/slither/analyze';
+        return "https://analyzer-service-latest.onrender.com/openai/inspect/slither/analyze";
       case 'ChatGPT':
-        return 'https://analyzer-service-latest.onrender.com/openai/inspect/gpt/analyze';
+        return "https://analyzer-service-latest.onrender.com/openai/inspect/gpt/analyze";
       default:
         return '';
     }
@@ -28,9 +31,29 @@ const AnalysisPage = () => {
       return;
     }
 
+    if (!code.trim()) { 
+      setCodeError(true);
+      return;
+    }
+
+    let lines = code.split("\n")
+    let pragmaFound = false;
+
+    lines.forEach((line) => {
+      if (line.startsWith("pragma")){
+        pragmaFound = true;
+      }
+    });
+
+    if (!pragmaFound){
+      setCodeError(true);
+      return
+    }
+
+
     setLoading(true);
     const endpoint = getApiEndpoint();
-    const wrappedCode = `"\n${code}\n"`;
+    const wrappedCode = `''${code}''`;
     const config = {
       method: 'post',
       url: endpoint,
@@ -95,6 +118,14 @@ const AnalysisPage = () => {
           <div className="error-content">
             <p>Please select the tool you want to use before proceeding to analyze</p>
             <button onClick={() => setError(false)} className="close-button">Okay</button>
+          </div>
+        </div>
+      )}
+      {codeError && (
+        <div className="error-modal">
+          <div className="error-content">
+            <p>Please add your Solidity code to be analyzed!</p>
+            <button onClick={() => setCodeError(false)} className="close-button">Okay</button>
           </div>
         </div>
       )}

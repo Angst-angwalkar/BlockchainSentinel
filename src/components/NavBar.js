@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from './Blockchain sentinental.png';
+import logo from './Blockchain sentinental.png';  // Adjust path as needed
+
 const Navbar = () => {
   return (
     <nav className="navbar">
