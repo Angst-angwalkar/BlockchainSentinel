@@ -19,7 +19,7 @@ const ContactUs = () => {
     };
 
     try {
-      const result = await axios.post('http://localhost:8283/openai/contact/email', emailData);
+      const result = await axios.post('https://analyzer-service-latest.onrender.com/openai/contact/email', emailData);
       if (result.data === "Email sent successfully!") {
         setSuccess(true);
         setEmail('');
