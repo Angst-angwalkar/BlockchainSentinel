@@ -1,5 +1,5 @@
 body {
-  background-image: url('/public/sentinelBackground.jpeg'); /* Path relative to the public directory */
+  background-image: url('/public/sentinelBackground.jpeg'); 
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -71,7 +71,7 @@ body {
 
 .response-output {
   height: auto;
-  max-height: 1500px; /* Approx. 100 lines depending on font size */
+  max-height: 1500px;
   overflow-y: auto;
 }
 

@@ -10,7 +10,7 @@ const AnalysisPage = () => {
   const [error, setError] = useState(false);
   const [codeError, setCodeError] = useState(false);
   const [pragmaError, setPragmaError] = useState(false);
-  const [apiError, setApiError] = useState(''); // State for API error messages
+  const [apiError, setApiError] = useState('');
 
   const baseURL = process.env.REACT_APP_API_BASE_URL;
 
@@ -54,7 +54,7 @@ const AnalysisPage = () => {
 
     setLoading(true);
     const endpoint = getApiEndpoint();
-    const wrappedCode = `"${code}"`;
+    const wrappedCode = `"\n${code}\n"`;
     const config = {
       method: 'post',
       url: endpoint,
