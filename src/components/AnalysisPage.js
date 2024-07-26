@@ -12,7 +12,6 @@ const AnalysisPage = () => {
   const [pragmaError, setPragmaError] = useState(false);
   const [apiError, setApiError] = useState('');
 
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   const getApiEndpoint = () => {
     switch (selectedTool) {
